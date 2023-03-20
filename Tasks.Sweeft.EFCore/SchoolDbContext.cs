@@ -6,7 +6,7 @@ namespace Tasks.Sweeft.EFCore
 {
     public class SchoolDbContext : DbContext
     {
-        private readonly IConfiguration _configuration;
+        //private readonly IConfiguration _configuration;
 
         public DbSet<Teacher>? Teachers { get; set; }
         public DbSet<Pupil>? Pupils { get; set; }
@@ -14,15 +14,16 @@ namespace Tasks.Sweeft.EFCore
 
         public SchoolDbContext()
         {
-            _configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
-                .AddJsonFile("appsettings.json")
-                .Build();
+            //_configuration = new ConfigurationBuilder()
+            //    .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
+            //    .AddJsonFile("appsettings.json")
+            //    .Build();
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_configuration.GetConnectionString("Default"));
+            optionsBuilder.UseSqlServer("server=GHOSTSN0W\\SQLEXPRESS; database=SD_School; integrated security=true;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
